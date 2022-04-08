@@ -58,7 +58,7 @@ export default function Coins() {
 const Container = styled.div`
   padding: 0px 20px;
   max-width: 480px;
-  margin: 0 auto;
+  margin: 0 auto 80px;
 `;
 
 const Header = styled.header`

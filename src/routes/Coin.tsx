@@ -179,7 +179,7 @@ const Tab = styled.span<{ isActive: boolean }>`
 const BackBtn = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  margin: 50px 0 80px;
   > a {
     display: flex;
     justify-content: center;

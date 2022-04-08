@@ -13,7 +13,7 @@ export default function DarkModeBtn({ toggleDark }: DarkModeBtnProps) {
 }
 
 const ToggleBtn = styled.button`
-  margin: 40px 0;
+  margin: 40px 40px 0;
   padding: 7px 10px;
   border: none;
   border-radius: 5px;
