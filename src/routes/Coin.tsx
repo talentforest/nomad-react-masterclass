@@ -1,10 +1,11 @@
 import { useQuery } from 'react-query';
+import { Helmet } from "react-helmet-async"
 import { useLocation, useParams } from "react-router";
 import { Routes, Route, Link, useMatch } from 'react-router-dom';
-import styled from "styled-components";
 import { fetchCoinInfo, fetchCoinTickers } from '../api';
 import Chart from "./Chart";
 import Price from "./Price"
+import styled from "styled-components";
 
 interface RouteParams {
   coinId: string;
@@ -25,9 +26,11 @@ export default function Coin() {
   );
   const { isLoading: tickersLoading, data: tickersData } = useQuery(
     ["tickers", coinId],
-    () => fetchCoinTickers(coinId)
+    () => fetchCoinTickers(coinId),
+    {
+      refetchInterval: 5000,
+    }
   );
-
   const loading = infoLoading || tickersLoading
 
   const priceMatch = useMatch("/:coinId/price");
@@ -35,6 +38,12 @@ export default function Coin() {
 
   return (
     <Container>
+      <Helmet>
+        <title>
+          {state?.name ? state.name : loading ?
+            "Loading..." : infoData?.name}
+        </title>
+      </Helmet>
       <Header>
         <Title>
           {state?.name ? state.name : loading ?
@@ -55,8 +64,8 @@ export default function Coin() {
               <span>${infoData?.symbol}</span>
             </OverviewItem>
             <OverviewItem>
-              <span>Open Source:</span>
-              <span>{infoData?.open_source ? "Yes" : "No"}</span>
+              <span>Price:</span>
+              <span>${tickersData?.quotes.USD.price.toFixed(2)}</span>
             </OverviewItem>
           </Overview>
           <Description>{infoData?.description}</Description>
@@ -81,9 +90,16 @@ export default function Coin() {
           </Tabs>
 
           <Routes>
-            <Route path="chart" element={<Chart />} />
+            <Route path="chart" element={<Chart coinId={coinId} />} />
             <Route path="price" element={<Price />} />
           </Routes>
+
+          <BackBtn>
+            <Link to={`/`}>
+              Back
+            </Link>
+          </BackBtn>
+
         </>
       )}
     </Container>
@@ -158,3 +174,26 @@ const Tab = styled.span<{ isActive: boolean }>`
     props.isActive ? props.theme.accentColor : props.theme.textColor};
   }
 `;
+
+const BackBtn = styled.div`
+  display: flex;
+  justify-content: center;
+  > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    height: 35px;
+    border: none;
+    border-radius: 10px;
+    background-color: ${(props) => props.theme.accentColor};
+    color: ${(props) => props.theme.textColor};
+    cursor: pointer;
+    &:hover {
+      background-color: ${(props) => props.theme.textColor};
+      color: ${(props) => props.theme.accentColor};
+    }
+
+  }
+`
+

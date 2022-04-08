@@ -2,6 +2,7 @@ import { useQuery } from 'react-query';
 import { Link } from "react-router-dom";
 import { fetchCoins } from '../api';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet-async';
 
 interface CoinInterface {
   id: string,
@@ -14,10 +15,15 @@ interface CoinInterface {
 }
 
 export default function Coins() {
-  const { isLoading, data } = useQuery("allCoins", fetchCoins)
+  const { isLoading, data } = useQuery("allCoins", fetchCoins);
 
   return (
     <Container>
+      <Helmet>
+        <title>
+          Coin List
+        </title>
+      </Helmet>
       <Header>
         <Title>Coin List</Title>
       </Header>
@@ -28,7 +34,7 @@ export default function Coins() {
           {data?.slice(0, 50).map((coin: CoinInterface) => (
             <Coin key={coin.id}>
               <Link
-                to={`/${coin.id}`}
+                to={`/${coin.id}/chart`}
                 state={{ name: coin.name, rank: coin.rank }}
               >
                 <div>
@@ -63,7 +69,7 @@ const Header = styled.header`
 const CoinList = styled.ul``;
 
 const Coin = styled.li`
-  background-color: ${(props) => props.theme.boxColor};
+  background-color: ${(props) => props.theme.accentColor};
   color: ${(props) => props.theme.textColor};
   border-radius: 5px;
   margin-bottom: 10px;
@@ -74,7 +80,7 @@ const Coin = styled.li`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: initial;
+    color: ${(props) => props.theme.textColor};
     > div {
       display: flex;
       align-items: center;
@@ -83,6 +89,8 @@ const Coin = styled.li`
   &:hover {
     a {
       color: ${(props) => props.theme.accentColor};
+      background-color: ${(props) => props.theme.textColor};
+      border-radius: 5px;
     }
   }
 `;
