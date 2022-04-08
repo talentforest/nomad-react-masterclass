@@ -29,54 +29,47 @@ export default function Chart({ coinId }: ChartProps) {
           "Loading Chart..."
         ) : (
           <ApexChart
-            type="line"
+            type="candlestick"
             series={[
               {
                 name: "Price",
-                data: data?.map((price) => price.close) ?? [],
+                data: data?.map((price) => ({
+                  x: price.time_close,
+                  y: [price.open, price.high, price.low, price.close],
+                })) ?? [],
               },
             ]}
             options={{
-              theme: {
-                mode: "dark",
-              },
               chart: {
-                height: 300,
-                width: 500,
                 toolbar: {
-                  show: false,
+                  show: false
                 },
+                height: 900,
                 background: "transparent",
+                foreColor: "#fff",
+                animations: {
+                  enabled: true,
+                  easing: "easeinout",
+                  speed: 800,
+                  animateGradually: {
+                    enabled: true,
+                    delay: 150,
+                  },
+                  dynamicAnimation: {
+                    enabled: true,
+                    speed: 350,
+                  },
+                },
               },
-              grid: { show: false },
-              stroke: {
-                curve: "smooth",
-                width: 4,
+              xaxis: {
+                type: "datetime",
               },
               yaxis: {
                 show: false,
               },
-              xaxis: {
-                axisBorder: { show: false },
-                axisTicks: { show: false },
-                labels: { show: false },
-                type: "datetime",
-                categories: data?.map((price) => price.time_close),
-              },
-              fill: {
-                type: "gradient",
-                gradient: { gradientToColors: ["#0be881"], stops: [0, 100] },
-              },
-              colors: ["#0fbcf9"],
-              tooltip: {
-                y: {
-                  formatter: (value) => `$${value.toFixed(2)}`,
-                },
-              },
             }}
           />
-        )
-        }
+        )}
       </div>
     </>
   )

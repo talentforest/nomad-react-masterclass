@@ -18,38 +18,40 @@ export default function Coins() {
   const { isLoading, data } = useQuery("allCoins", fetchCoins);
 
   return (
-    <Container>
-      <Helmet>
-        <title>
-          Coin List
-        </title>
-      </Helmet>
-      <Header>
-        <Title>Coin List</Title>
-      </Header>
-      {isLoading ? (
-        <Loader>Loading...</Loader>
-      ) : (
-        <CoinList>
-          {data?.slice(0, 50).map((coin: CoinInterface) => (
-            <Coin key={coin.id}>
-              <Link
-                to={`/${coin.id}/chart`}
-                state={{ name: coin.name, rank: coin.rank }}
-              >
-                <div>
-                  <Img
-                    src={`https://cryptocurrencyliveprices.com/img/${coin.id}.png`}
-                  />
-                  {coin.name}
-                </div>
-                <div>&rarr;</div>
-              </Link>
-            </Coin>
-          ))}
-        </CoinList>
-      )}
-    </Container>
+    <>
+      <Container>
+        <Helmet>
+          <title>
+            Coin List
+          </title>
+        </Helmet>
+        <Header>
+          <Title>Coin List</Title>
+        </Header>
+        {isLoading ? (
+          <Loader>Loading...</Loader>
+        ) : (
+          <CoinList>
+            {data?.slice(0, 50).map((coin: CoinInterface) => (
+              <Coin key={coin.id}>
+                <Link
+                  to={`/${coin.id}/chart`}
+                  state={{ name: coin.name, rank: coin.rank }}
+                >
+                  <div>
+                    <Img
+                      src={`https://cryptocurrencyliveprices.com/img/${coin.id}.png`}
+                    />
+                    {coin.name}
+                  </div>
+                  <div>&rarr;</div>
+                </Link>
+              </Coin>
+            ))}
+          </CoinList>
+        )}
+      </Container>
+    </>
   );
 }
 

@@ -91,7 +91,7 @@ export default function Coin() {
 
           <Routes>
             <Route path="chart" element={<Chart coinId={coinId} />} />
-            <Route path="price" element={<Price />} />
+            <Route path="price" element={<Price coinId={coinId} tickersData={tickersData} />} />
           </Routes>
 
           <BackBtn>
@@ -108,6 +108,7 @@ export default function Coin() {
 
 const Title = styled.h1`
   font-size: 48px;
+  font-weight: 700;
   color: ${(props) => props.theme.textColor};
 `;
 
@@ -132,7 +133,7 @@ const Header = styled.header`
 const Overview = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: ${(props) => props.theme.boxColor};
   padding: 10px 20px;
   border-radius: 10px;
 `;
@@ -165,10 +166,10 @@ const Tab = styled.span<{ isActive: boolean }>`
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 400;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 7px 0px;
+  background-color: ${(props) => props.theme.boxColor};
   border-radius: 10px;
   a {
+    padding: 7px 0px;
     display: block;
     color: ${(props) =>
     props.isActive ? props.theme.accentColor : props.theme.textColor};
@@ -178,6 +179,7 @@ const Tab = styled.span<{ isActive: boolean }>`
 const BackBtn = styled.div`
   display: flex;
   justify-content: center;
+  margin-top: 50px;
   > a {
     display: flex;
     justify-content: center;
@@ -187,11 +189,10 @@ const BackBtn = styled.div`
     border: none;
     border-radius: 10px;
     background-color: ${(props) => props.theme.accentColor};
-    color: ${(props) => props.theme.textColor};
+    color: #fff;
     cursor: pointer;
     &:hover {
       background-color: ${(props) => props.theme.textColor};
-      color: ${(props) => props.theme.accentColor};
     }
 
   }
