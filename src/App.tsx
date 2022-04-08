@@ -1,17 +1,20 @@
-import styled from 'styled-components';
+import { createGlobalStyle } from "styled-components";
+import Router from './Router';
 
-const Container = styled.div`
-  background-color: ${(props) => props.theme.bgColor};
+const GlobalStyle = createGlobalStyle`
+  body {
+  font-family: 'Source Sans Pro', sans-serif;
+  background-color:${(props) => props.theme.bgColor};
+  color:${(props) => props.theme.textColor}
+  }
 `
-const H1 = styled.h1`
-  color: ${(props) => props.theme.textColor};
-`;
 
 function App() {
   return (
-    <Container>
-      <H1>Theme Mode</H1>
-    </Container>
+    <>
+      <GlobalStyle />
+      <Router />
+    </>
   );
 }
 
