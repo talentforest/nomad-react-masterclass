@@ -1,12 +1,13 @@
+import { useSetRecoilState } from 'recoil';
 import styled from "styled-components";
+import { isDarkAtom } from '../atoms';
 
-interface DarkModeBtnProps {
-  toggleDark: () => void;
-}
+export default function DarkModeBtn() {
+  const setDarkAtom = useSetRecoilState(isDarkAtom);
+  const toggleDarkAtom = () => setDarkAtom((prev) => !prev);
 
-export default function DarkModeBtn({ toggleDark }: DarkModeBtnProps) {
   return (
-    <ToggleBtn onClick={toggleDark}>
+    <ToggleBtn onClick={toggleDarkAtom}>
       Dark Mode Button
     </ToggleBtn>
   )
