@@ -1,6 +1,6 @@
 import { useSetRecoilState } from 'recoil';
 import styled from "styled-components";
-import { isDarkAtom } from '../atoms';
+import { isDarkAtom } from '../data/atoms';
 
 export default function DarkModeBtn() {
   const setDarkAtom = useSetRecoilState(isDarkAtom);

@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import DarkModeBtn from './components/DarkModeBtn';
+import ToDoList from './router/ToDoList';
 
 function Router() {
   return (
@@ -7,8 +9,7 @@ function Router() {
       <DarkModeBtn />
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Routes>
-          <Route path="/" />
-          <Route path="/:coinId/*" />
+          <Route path="/" element={<ToDoList />} />
         </Routes>
       </BrowserRouter>
     </>
