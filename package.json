@@ -55,5 +55,16 @@
   "devDependencies": {
     "@types/react-helmet": "^6.1.5",
     "@types/styled-components": "^5.1.24"
+  },
+  "description": "[Demo](\"https://talentforest.github.io/nomad-react-masterclass/\")",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/talentforest/nomad-react-masterclass.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/talentforest/nomad-react-masterclass/issues"
   }
 }
