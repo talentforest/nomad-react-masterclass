@@ -11,9 +11,7 @@ export default function ToDo({ text, category, id }:IToDo) {
     } = event;
     setToDos(oldToDos => {
       const targetIndex = oldToDos.findIndex(toDo => toDo.id === id)
-      const oldToDo = oldToDos[targetIndex];
       const newToDo = { text, id, category: name as any };
-      console.log(oldToDo, newToDo)
       return [
         ...oldToDos.slice(0, targetIndex), 
         newToDo, 
@@ -25,17 +23,6 @@ export default function ToDo({ text, category, id }:IToDo) {
   return (
     <li>
       <span>{text}</span>
-      {/* // Method 1 */}
-      {/* {category !== "DOING" && (
-        <button onClick={() => onClick("DOING")}>Doing</button>
-      )}
-      {category !== "TO_DO" && (
-        <button onClick={() => onClick("TO_DO")}>To Do</button>
-      )}
-      {category !== "DONE" && (
-        <button onClick={() => onClick("DONE")}>Done</button>
-      )} */}
-      {/* // Method 2 */}
       {category !== "DOING" && (
         <button name="DOING" onClick={onClick}>
           Doing
@@ -54,5 +41,3 @@ export default function ToDo({ text, category, id }:IToDo) {
     </li>
   );
 }
-
-// STEP1. 수정하고자 하는 to do의 경로를 알아야 한다. 그 위치(인덱스)를 알아야 한다.

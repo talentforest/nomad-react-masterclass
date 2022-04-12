@@ -23,7 +23,6 @@ const GlobalStyle = createGlobalStyle`
   font-family: 'Source Sans Pro', sans-serif;
   background-color:${(props) => props.theme.bgColor};
   color:${(props) => props.theme.textColor};
-  padding: 20px;
   }
   * {
     box-sizing: border-box;
@@ -154,6 +153,6 @@ const GlobalStyle = createGlobalStyle`
     border-spacing: 0;
   }
   #root {
-    padding: 0 30px;
+    padding: 30px;
   }
 `
