@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import DarkModeBtn from './components/DarkModeBtn';
-import ToDoList from './router/ToDoList';
+import ToDoList from './components/ToDoList';
 
 function Router() {
   return (
