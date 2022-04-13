@@ -8,7 +8,7 @@ export enum Categories {
 }
 
 export interface IToDo {
-  text: string;
+  text: string,
   id: number,
   category: Categories;
 }
