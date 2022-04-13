@@ -4,7 +4,7 @@ import { categoryState, toDoState } from '../atoms';
 import styled from 'styled-components';
 
 interface IForm {
-  toDo: string;
+  toDo: string,
 }
 
 export default function CreateToDo() {
@@ -30,7 +30,7 @@ export default function CreateToDo() {
         {...register("toDo", {
           required: "Please write a To Do.",
         })}
-        placeholder="Write a to do" 
+        placeholder="Write a to do..." 
       />
       <button>Add</button>
     </Form>
@@ -38,5 +38,25 @@ export default function CreateToDo() {
 }
 
 const Form = styled.form`
-  text-align: center;
+  input {
+    width: 300px;
+    height: 35px;
+    border-radius: 5px;
+    border: none;
+    background-color: ${(props) => props.theme.textColor};
+    padding: 0 10px;
+    margin: 0 5px 10px 0; 
+    &::placeholder{
+      color: ${(props) => props.theme.boxColor};
+      font-size: 13px;
+    }
+  }
+  button {
+    width: 50px;
+    height: 35px;
+    border-radius: 5px;
+    border: none;
+    background-color: ${(props) => props.theme.accentColor};
+    color: ${(props) => props.theme.textColor};
+  }
 `
