@@ -1,20 +1,12 @@
 import { createGlobalStyle } from "styled-components";
-import { ReactQueryDevtools } from "react-query/devtools"
-import { darkTheme, lightTheme } from './theme/theme';
-import { ThemeProvider } from 'styled-components';
-import { useRecoilValue } from 'recoil';
-import { isDarkAtom } from './data/atoms';
-import Router from './Router';
+import Router from "./Router";
 
 export default function App() {
-  const isDark = useRecoilValue(isDarkAtom);
-
   return (
-    <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+    <>
       <GlobalStyle />
       <Router />
-      <ReactQueryDevtools initialIsOpen={true} />
-    </ThemeProvider>
+    </>
   );
 }
 
@@ -155,4 +147,4 @@ const GlobalStyle = createGlobalStyle`
   #root {
     padding: 30px;
   }
-`
+`;

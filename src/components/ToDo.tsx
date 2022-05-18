@@ -1,34 +1,34 @@
-import React from 'react';
-import { useSetRecoilState } from 'recoil';
-import { Categories, IToDo, toDoState } from '../atoms';
-import styled from 'styled-components';
+import React from "react";
+import { useSetRecoilState } from "recoil";
+import { Categories, IToDo, toDoState } from "../atoms";
+import styled from "styled-components";
 
-export default function ToDo({ text, category, id }:IToDo) {
-  const  setToDos = useSetRecoilState(toDoState);
+export default function ToDo({ text, category, id }: IToDo) {
+  const setToDos = useSetRecoilState(toDoState);
 
   const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     const {
       currentTarget: { name },
     } = event;
-    setToDos(oldToDos => {
-      const targetIndex = oldToDos.findIndex(toDo => toDo.id === id)
+    setToDos((oldToDos) => {
+      const targetIndex = oldToDos.findIndex((toDo) => toDo.id === id);
       const newToDo = { text, id, category: name as any };
       return [
-        ...oldToDos.slice(0, targetIndex), 
-        newToDo, 
+        ...oldToDos.slice(0, targetIndex),
+        newToDo,
         ...oldToDos.slice(targetIndex + 1),
       ];
-    })
+    });
   };
 
   const onDeleteClick = () => {
-    setToDos(oldToDos => {
-      const targetIndex = oldToDos.findIndex(toDo => toDo.id === id)
+    setToDos((oldToDos) => {
+      const targetIndex = oldToDos.findIndex((toDo) => toDo.id === id);
       return [
-        ...oldToDos.slice(0, targetIndex), 
+        ...oldToDos.slice(0, targetIndex),
         ...oldToDos.slice(targetIndex + 1),
-      ]
-    })
+      ];
+    });
   };
 
   return (
@@ -97,4 +97,4 @@ const List = styled.li`
     margin-left: 5px;
     cursor: pointer;
   }
-`
+`;
