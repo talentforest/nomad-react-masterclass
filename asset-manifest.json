@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/nomad-react-masterclass/static/js/main.f9c564a0.js",
+    "main.js": "/nomad-react-masterclass/static/js/main.dbf24404.js",
     "index.html": "/nomad-react-masterclass/index.html",
-    "main.f9c564a0.js.map": "/nomad-react-masterclass/static/js/main.f9c564a0.js.map"
+    "main.dbf24404.js.map": "/nomad-react-masterclass/static/js/main.dbf24404.js.map"
   },
   "entrypoints": [
-    "static/js/main.f9c564a0.js"
+    "static/js/main.dbf24404.js"
   ]
 }
