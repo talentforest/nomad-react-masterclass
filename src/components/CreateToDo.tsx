@@ -1,36 +1,33 @@
 import { useForm } from "react-hook-form";
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { categoryState, toDoState } from '../atoms';
-import styled from 'styled-components';
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { categoryState, toDoState } from "../atoms";
+import styled from "styled-components";
 
 interface IForm {
-  toDo: string,
+  toDo: string;
 }
 
 export default function CreateToDo() {
   const setToDos = useSetRecoilState(toDoState);
   const category = useRecoilValue(categoryState);
-  const { 
-    register, 
-    handleSubmit, 
-    setValue,
-  } = useForm<IForm>();
+  const { register, handleSubmit, setValue } = useForm<IForm>();
 
   const handleValid = ({ toDo }: IForm) => {
     setToDos((oldToDos) => [
-      { text: toDo, id: Date.now(), category }, 
+      { text: toDo, id: Date.now(), category },
       ...oldToDos,
-    ])
+    ]);
     setValue("toDo", "");
   };
-  
+
   return (
     <Form onSubmit={handleSubmit(handleValid)}>
       <input
         {...register("toDo", {
           required: "Please write a To Do.",
         })}
-        placeholder="Write a to do..." 
+        placeholder="Write a to do..."
+        autoFocus
       />
       <button>Add</button>
     </Form>
@@ -38,25 +35,32 @@ export default function CreateToDo() {
 }
 
 const Form = styled.form`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
   input {
-    width: 300px;
+    width: 85%;
     height: 35px;
     border-radius: 5px;
-    border: none;
-    background-color: ${(props) => props.theme.textColor};
+    border: 1px solid #aaa;
+    background-color: ${(props) => props.theme.boxColor};
     padding: 0 10px;
-    margin: 0 5px 10px 0; 
-    &::placeholder{
-      color: ${(props) => props.theme.boxColor};
+    margin-right: 10px;
+    &::placeholder {
+      color: ${(props) => props.theme.textColor};
       font-size: 13px;
+    }
+    &:focus {
+      outline: none;
     }
   }
   button {
-    width: 50px;
+    width: 15%;
+    font-weight: 700;
     height: 35px;
     border-radius: 5px;
-    border: none;
+    border: 1px solid #d8d8d8;
     background-color: ${(props) => props.theme.accentColor};
     color: ${(props) => props.theme.textColor};
   }
-`
+`;

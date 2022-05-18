@@ -2,14 +2,16 @@ import { Categories } from "../atoms";
 import styled from "styled-components";
 
 interface propsType {
-  category: string,
-  onInput: (event:React.FormEvent<HTMLSelectElement>) => void,
+  category: string;
+  onInput: (event: React.FormEvent<HTMLSelectElement>) => void;
 }
 
-export default function Category({ category, onInput }:propsType) {
+export default function Category({ category, onInput }: propsType) {
   return (
-    <Select value={category} onInput={onInput}>
-      <option value={Categories.TO_DO}>To Do</option>
+    <Select id="select" value={category} onInput={onInput}>
+      <option selected value={Categories.TO_DO}>
+        To Do
+      </option>
       <option value={Categories.DOING}>Doing</option>
       <option value={Categories.DONE}>Done</option>
     </Select>
@@ -17,11 +19,13 @@ export default function Category({ category, onInput }:propsType) {
 }
 
 const Select = styled.select`
-  width: 140px;
-  height: 30px;
+  height: 35px;
+  padding: 0 10px;
+  font-weight: 700;
+  background: ${(props) => props.theme.boxColor};
   border-radius: 5px;
-  color: ${(props) => props.theme.textColor};
-  background-color: ${(props) => props.theme.accentColor};
-  padding: 0 5px;
-  margin: 10px 0 10px 0;
-`
+  border: 1px solid #aaa;
+  &:focus {
+    outline: none;
+  }
+`;

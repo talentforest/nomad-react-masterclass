@@ -12,12 +12,12 @@ export default function App() {
 
 const GlobalStyle = createGlobalStyle`
   body {
-  font-family: 'Source Sans Pro', sans-serif;
   background-color:${(props) => props.theme.bgColor};
   color:${(props) => props.theme.textColor};
   }
   * {
     box-sizing: border-box;
+    font-family: monospace;
   }
   a {
     text-decoration: none;

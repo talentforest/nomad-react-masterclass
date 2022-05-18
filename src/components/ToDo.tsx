@@ -34,7 +34,7 @@ export default function ToDo({ text, category, id }: IToDo) {
   return (
     <List>
       <div>
-        <div></div>
+        <button>코딩🖥 🔽</button>
         <span>{text}</span>
       </div>
       <div>
@@ -69,32 +69,41 @@ const List = styled.li`
   padding: 5px 10px;
   border-radius: 5px;
   vertical-align: center;
-  background-color: #806dea;
-  div {
-    display: flex;
-    align-items: center;
-    border-radius: 50%;
-    > div {
-      width: 5px;
-      height: 5px;
-      background-color: ${(props) => props.theme.textColor};
-      margin-right: 10px;
+  background-color: ${(props) => props.theme.boxColor};
+  border: 1px solid #cecece;
+  list-style: none;
+  font-size: 14px;
+  > div:first-child {
+    > span {
+      padding-top: 3px;
+      font-weight: 600;
+      margin-right: 15px;
+    }
+    > button {
+      width: 60px;
+      height: 26px;
+      border-radius: 6px;
+      color: ${(props) => props.theme.textColor};
+      font-size: 10px;
+      font-weight: 700;
+      border: 1px solid #c7c7c7;
+      background-color: #fff;
+      margin-right: 5px;
+      cursor: pointer;
     }
   }
-  span {
-    padding-top: 3px;
-    font-size: 17px;
-    font-weight: 600;
-    margin-right: 15px;
-  }
-  button {
-    width: 50px;
-    height: 30px;
-    border-radius: 5px;
-    border: none;
-    background-color: ${(props) => props.theme.accentColor};
-    color: ${(props) => props.theme.textColor};
-    margin-left: 5px;
-    cursor: pointer;
+  > div:last-child {
+    > button {
+      width: 50px;
+      height: 26px;
+      border-radius: 6px;
+      background-color: ${(props) => props.theme.accentColor};
+      color: ${(props) => props.theme.textColor};
+      margin-left: 5px;
+      font-size: 10px;
+      font-weight: 700;
+      border: 1px solid #ffefca;
+      cursor: pointer;
+    }
   }
 `;
