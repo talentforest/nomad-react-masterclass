@@ -1,9 +1,9 @@
 import React from "react";
+import styled from "styled-components";
 import { useSetRecoilState } from "recoil";
 import { Categories, IToDo, toDoState } from "../atoms";
-import styled from "styled-components";
 
-export default function ToDo({ text, category, id }: IToDo) {
+export default function ToDo({ text, category, id, field }: IToDo) {
   const setToDos = useSetRecoilState(toDoState);
 
   const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -12,7 +12,8 @@ export default function ToDo({ text, category, id }: IToDo) {
     } = event;
     setToDos((oldToDos) => {
       const targetIndex = oldToDos.findIndex((toDo) => toDo.id === id);
-      const newToDo = { text, id, category: name as any };
+      const newToDo = { text, id, field, category: name as Categories };
+
       return [
         ...oldToDos.slice(0, targetIndex),
         newToDo,
@@ -34,7 +35,7 @@ export default function ToDo({ text, category, id }: IToDo) {
   return (
     <List>
       <div>
-        <button>코딩🖥 🔽</button>
+        <div>{field}</div>
         <span>{text}</span>
       </div>
       <div>
@@ -65,7 +66,7 @@ const List = styled.li`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 10px 0;
+  margin-top: 8px;
   padding: 5px 10px;
   border-radius: 5px;
   vertical-align: center;
@@ -74,13 +75,18 @@ const List = styled.li`
   list-style: none;
   font-size: 14px;
   > div:first-child {
+    display: flex;
+    align-items: center;
     > span {
       padding-top: 3px;
       font-weight: 600;
       margin-right: 15px;
     }
-    > button {
-      width: 60px;
+    > div {
+      display: flex;
+      align-items: center;
+      padding: 0 5px;
+      width: fit-content;
       height: 26px;
       border-radius: 6px;
       color: ${(props) => props.theme.textColor};
@@ -89,7 +95,6 @@ const List = styled.li`
       border: 1px solid #c7c7c7;
       background-color: #fff;
       margin-right: 5px;
-      cursor: pointer;
     }
   }
   > div:last-child {

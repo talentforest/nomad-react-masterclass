@@ -4,19 +4,20 @@ export enum Categories {
   "TO_DO" = "TO_DO",
   "DOING" = "DOING",
   "DONE" = "DONE",
-  "NEW_CATEGORY" = "NEW_CATEGORY",
+}
+
+export enum Fields {
+  "코딩 🖥" = "코딩 🖥",
+  "집안일 🏠" = "집안일 🏠",
+  "기타 ⚙️" = "기타 ⚙️",
 }
 
 export interface IToDo {
   text: string;
   id: number;
   category: Categories;
+  field: Fields;
 }
-
-export const categoryState = atom<Categories>({
-  key: "category",
-  default: Categories.TO_DO,
-});
 
 export const toDoState = atom<IToDo[]>({
   key: "toDo",
@@ -37,11 +38,23 @@ export const toDoState = atom<IToDo[]>({
   ],
 });
 
+export const categoryState = atom<Categories>({
+  key: "category",
+  default: Categories.TO_DO,
+});
+
+export const fieldState = atom<Fields>({
+  key: "field",
+  default: Fields["코딩 🖥"],
+});
+
+// selector을 이용하여 각 카테고리별로 toDo들을 분류한다.
 export const toDoSelector = selector({
   key: "toDoSelector",
   get: ({ get }) => {
     const toDos = get(toDoState);
     const category = get(categoryState);
-    return toDos?.filter((toDo) => toDo.category === category);
+
+    return toDos.filter((toDo) => toDo.category === category);
   },
 });

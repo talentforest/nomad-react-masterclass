@@ -3,29 +3,32 @@ import styled from "styled-components";
 
 interface propsType {
   category: string;
-  onInput: (event: React.FormEvent<HTMLSelectElement>) => void;
+  onCategoryInput: (event: React.FormEvent<HTMLSelectElement>) => void;
 }
 
-export default function Category({ category, onInput }: propsType) {
+const Category = ({ category, onCategoryInput }: propsType) => {
   return (
-    <Select id="select" value={category} onInput={onInput}>
-      <option selected value={Categories.TO_DO}>
-        To Do
-      </option>
-      <option value={Categories.DOING}>Doing</option>
-      <option value={Categories.DONE}>Done</option>
+    <Select value={category} onInput={onCategoryInput}>
+      <option value={Categories.TO_DO}>할 일 보기</option>
+      <option value={Categories.DOING}>진행 중인 일 보기</option>
+      <option value={Categories.DONE}>완료한 일 보기</option>
     </Select>
   );
-}
+};
 
 const Select = styled.select`
-  height: 35px;
-  padding: 0 10px;
+  width: 100px;
+  height: 25px;
+  padding: 0 3px;
   font-weight: 700;
+  font-size: 10px;
   background: ${(props) => props.theme.boxColor};
   border-radius: 5px;
   border: 1px solid #aaa;
+  word-spacing: -3px;
   &:focus {
     outline: none;
   }
 `;
+
+export default Category;
