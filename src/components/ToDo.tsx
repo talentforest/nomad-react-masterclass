@@ -90,7 +90,7 @@ const List = styled.li`
       height: 26px;
       border-radius: 6px;
       color: ${(props) => props.theme.textColor};
-      font-size: 10px;
+      font-size: 14px;
       font-weight: 700;
       border: 1px solid #c7c7c7;
       background-color: #fff;
@@ -99,13 +99,13 @@ const List = styled.li`
   }
   > div:last-child {
     > button {
-      width: 50px;
+      width: 60px;
       height: 26px;
       border-radius: 6px;
       background-color: ${(props) => props.theme.accentColor};
       color: ${(props) => props.theme.textColor};
       margin-left: 5px;
-      font-size: 10px;
+      font-size: 12px;
       font-weight: 700;
       border: 1px solid #ffefca;
       cursor: pointer;

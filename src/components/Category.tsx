@@ -21,7 +21,7 @@ const Select = styled.select`
   height: 25px;
   padding: 0 3px;
   font-weight: 700;
-  font-size: 10px;
+  font-size: 14px;
   background: ${(props) => props.theme.boxColor};
   border-radius: 5px;
   border: 1px solid #aaa;

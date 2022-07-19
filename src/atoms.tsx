@@ -6,17 +6,11 @@ export enum Categories {
   "DONE" = "DONE",
 }
 
-export enum Fields {
-  "코딩 🖥" = "코딩 🖥",
-  "집안일 🏠" = "집안일 🏠",
-  "기타 ⚙️" = "기타 ⚙️",
-}
-
 export interface IToDo {
   text: string;
   id: number;
   category: Categories;
-  field: Fields;
+  field: [];
 }
 
 export const toDoState = atom<IToDo[]>({
@@ -43,9 +37,38 @@ export const categoryState = atom<Categories>({
   default: Categories.TO_DO,
 });
 
-export const fieldState = atom<Fields>({
+export const fieldState = atom({
   key: "field",
-  default: Fields["코딩 🖥"],
+  default: "코딩 🖥",
+});
+
+export const addFieldState = atom({
+  key: "addField",
+  default: "",
+});
+
+export const fieldsState = atom({
+  key: "fieldlist",
+  default: ["코딩 🖥", "집안일 🏠", "기타 ⚙️"],
+  effects: [
+    ({ setSelf, onSet }) => {
+      const todoStoreKey = "Fields";
+      const savedValue = localStorage.getItem(todoStoreKey);
+      if (savedValue != null) {
+        setSelf(JSON.parse(savedValue));
+      }
+      onSet((newValue, _, isReset) => {
+        isReset
+          ? localStorage.removeItem(todoStoreKey)
+          : localStorage.setItem(todoStoreKey, JSON.stringify(newValue));
+      });
+    },
+  ],
+});
+
+export const showfieldInputState = atom({
+  key: "fieldInput",
+  default: false,
 });
 
 // selector을 이용하여 각 카테고리별로 toDo들을 분류한다.

@@ -51,9 +51,9 @@ const Form = styled.form`
     background-color: ${(props) => props.theme.boxColor};
     padding: 0 10px;
     margin-right: 10px;
+    font-size: 16px;
     &::placeholder {
       color: ${(props) => props.theme.textColor};
-      font-size: 13px;
     }
     &:focus {
       outline: none;

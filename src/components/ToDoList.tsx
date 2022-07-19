@@ -1,5 +1,5 @@
 import { useRecoilState, useRecoilValue } from "recoil";
-import { categoryState, fieldState, toDoSelector } from "../atoms";
+import { categoryState, toDoSelector } from "../atoms";
 import CreateToDo from "./CreateToDo";
 import styled from "styled-components";
 import ToDo from "./ToDo";
@@ -9,21 +9,16 @@ import Field from "./Field";
 export default function ToDoList() {
   const toDos = useRecoilValue(toDoSelector);
   const [category, setCategory] = useRecoilState(categoryState);
-  const [field, setField] = useRecoilState(fieldState);
 
   const onCategoryInput = (event: React.FormEvent<HTMLSelectElement>) => {
     setCategory(event.currentTarget.value as any);
-  };
-
-  const onFieldInput = (event: React.FormEvent<HTMLSelectElement>) => {
-    setField(event.currentTarget.value as any);
   };
 
   return (
     <Container>
       <Title>To Dos</Title>
       <div>
-        <Field field={field} onFieldInput={onFieldInput} />
+        <Field />
         <CreateToDo />
       </div>
       <div>
